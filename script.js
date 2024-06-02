@@ -4,6 +4,30 @@ const paperButton = document.getElementById('paper');
 const scissorsButton = document.getElementById('scissors');
 const resetButton = document.getElementById('reset');
 
+// rock button styling
+rockButton.style.boxShadow = '0px 8px 15px';
+rockButton.style.height = '40px';
+rockButton.style.width = '160px';
+rockButton.style.backgroundColor = 'rgba(0, 0, 250, .5)'
+
+// paper button styling
+paperButton.style.boxShadow = '0px 8px 15px';
+paperButton.style.height = '40px';
+paperButton.style.width = '160px';
+paperButton.style.backgroundColor =  'rgba(256, 0, 0, .8)';
+
+//scissors button styling
+scissorsButton.style.boxShadow = '0px 8px 15px';
+scissorsButton.style.height = '40px';
+scissorsButton.style.width = '160px';
+scissorsButton.style.backgroundColor =  'rgba(0, 256, 0, .8)';
+
+//reset button styling
+resetButton.style.boxShadow = '0px 8px 15px';
+resetButton.style.height = '40px';
+resetButton.style.width = '160px';
+resetButton.style.backgroundColor =  'rgba(0, 0, 250, .5)';
+
 rockButton.addEventListener('click', () => playRound('Rock'));
 paperButton.addEventListener('click', () => playRound('Paper'));
 scissorsButton.addEventListener('click', () => playRound('Scissors'));
@@ -80,10 +104,3 @@ function resetGame() {
     resetButton.style.display = 'none';
 }
 
-// Function to start the game (can be expanded if needed)
-function playGame() {
-    // Add any game start logic here if needed
-}
-
-// Start the game
-playGame();
