@@ -1,79 +1,44 @@
-function getUserChoice() {
-    let isValid = false;
-    let userInput;  
-    while (!isValid) {
-        userInput = prompt("Type 'Rock', 'Paper', or 'Scissors'").trim();
-        userInput = userInput[0].toUpperCase() + userInput.slice(1).toLowerCase().replace(/[^a-zA-Z0-9]/g, '');
-        if (userInput === "Rock" || userInput === "Paper" || userInput === "Scissors") {
-            isValid = true;
-        } else {
-            alert("Invalid input. Please type 'Rock', 'Paper', or 'Scissors'.");
-        }
-    }
-    return userInput;
-}
+// Get the buttons and attach event listeners
+const rockButton = document.getElementById('rock');
+const paperButton = document.getElementById('paper');
+const scissorsButton = document.getElementById('scissors');
 
+rockButton.addEventListener('click', () => playRound('Rock'));
+paperButton.addEventListener('click', () => playRound('Paper'));
+scissorsButton.addEventListener('click', () => playRound('Scissors'));
+
+// Function to get the computer's choice
 function getCompChoice() {
-    let rand = Math.random() * 100;
-    Math.random();
-    if (rand <= 30) {
-        return "Rock";
-    } else if (rand > 30 && rand <= 60) {
-        return "Paper";
-    } else {
-        return "Scissors";
-    }
+    const choices = ["Rock", "Paper", "Scissors"];
+    const randIndex = Math.floor(Math.random() * 3);
+    return choices[randIndex];
 }
 
-function playRound(humanChoice, computerChoice) {
-    if (humanChoice == computerChoice) {
-        return "Tie";
-    } else if 
-    ((humanChoice == "Rock" && computerChoice == "Scissors") || (humanChoice == "Paper" && computerChoice == "Rock") || 
-    (humanChoice == "Scissors" && computerChoice == "Paper")) 
-    {
-        return "User";
+// Function to play a single round
+function playRound(userChoice) {
+    const compChoice = getCompChoice();
+    let result = "";
+
+    if (userChoice === compChoice) {
+        result = "It's a tie!";
+    } else if (
+        (userChoice === 'Rock' && compChoice === 'Scissors') ||
+        (userChoice === 'Paper' && compChoice === 'Rock') ||
+        (userChoice === 'Scissors' && compChoice === 'Paper')
+    ) {
+        result = `You win! ${userChoice} beats ${compChoice}`;
     } else {
-        return "Computer";
+        result = `You lose! ${compChoice} beats ${userChoice}`;
     }
+
+    // Display the result
+    alert(result);
 }
 
+// Function to start the game (can be expanded if needed)
 function playGame() {
-    let userScore = 0;
-    let compScore = 0;
-        
-    for (let i = 0; i < 5; i++) {
-        const userChoice = getUserChoice();
-        const compChoice = getCompChoice();
-        const roundWinner = playRound(userChoice, compChoice);
-        
-        if (roundWinner == "User") {
-                    userScore ++;
-        } else if (roundWinner == "Computer") {
-                compScore ++;
-        }
-
-        console.log(`Round ${i + 1}: `);
-        console.log('You chose ' + userChoice);
-        console.log('The computer chose ' + compChoice);
-
-         if (roundWinner == "User") {
-            console.log(userChoice + " beats " + compChoice + "!");
-        } else if (roundWinner == "Computer") {
-             console.log(compChoice + " beats " + userChoice + "!");
-         } else {
-            console.log("It's a tie!");
-        }
-
-        console.log('You: ' + userScore + ' | ' + 'Computer: ' + compScore);
-    }
-        
-                
-        
-        console.log(`Final Scores - User: ${userScore}, Computer: ${compScore}`);
-        return {userScore, compScore};
-        
+    // Add any game start logic here if needed
 }
 
-
+// Start the game
 playGame();
